@@ -90,6 +90,11 @@ div[data-baseweb="select"] > div {background:#fff !important; color:#1E2E2D !imp
 .passo .n {flex:0 0 26px; height:26px; border-radius:50%; background:#FF7A59; color:#fff !important; font-weight:800; display:flex; align-items:center; justify-content:center;}
 .passo.ok .n {background:#138A55;}
 .passo span {color:#4E6765 !important;}
+@media (max-width:640px){
+  .cab {padding:14px 16px;} .cab h1, .stApp .cab h1, .stApp .cab h1 span {font-size:1.5rem !important;}
+  .passos {grid-template-columns:1fr 1fr;} .passo span {display:none;} .passo {font-size:.82em; padding:6px 8px;}
+  .indice .n {font-size:2.6em;} .kpi .v {font-size:1.25em;}
+}
 .medalha {background:#fff; border:1px solid #CFE7E4; border-radius:14px; padding:12px; text-align:center; min-height:120px;}
 .medalha .e {font-size:2em;} .medalha.off {opacity:.4; filter:grayscale(1);}
 .aviso {font-size:.82em; color:#4E6765 !important;}
@@ -949,20 +954,20 @@ with abas[0]:
         st.markdown("**O que você conseguiu ver?** _(marque só o que viu de verdade)_")
         if modo.startswith("🏢"):
             c1, c2 = st.columns(2)
-            viu_contas = c1.checkbox("Prestação de contas publicada (quanto entrou e como foi gasto)")
+            viu_contas = c1.checkbox("Vi a prestação de contas")
             link_contas = c1.text_input("Link da prestação de contas (se tiver)", label_visibility="visible")
-            viu_entregas = c2.checkbox("Fotos com data, relatórios ou depoimentos de entregas")
-            contato_ok = c2.checkbox("Confirmei a campanha pelo site ou telefone oficial")
+            viu_entregas = c2.checkbox("Vi fotos ou relatórios das entregas")
+            contato_ok = c2.checkbox("Confirmei no site ou telefone oficial")
             titulos = st.multiselect("Títulos ou certificados que a instituição diz ter",
                                      ["CEBAS", "OSCIP", "Utilidade pública", "Registro no Conselho Municipal (CMAS/CMDCA)", "Auditoria independente"],
                                      placeholder="Escolha, se houver")
         else:
             c1, c2 = st.columns(2)
-            docs = c1.checkbox("Vi documentos (laudo, orçamento, boletim de ocorrência)")
-            atualiz = c1.checkbox("Há atualizações de como o dinheiro está sendo usado")
-            conhece = c1.checkbox("Conheço a família ou alguém de confiança confirmou")
-            plataforma = c2.checkbox("Está numa plataforma de vaquinha com regras e denúncia")
-            imprensa = c2.checkbox("Saiu em veículo de imprensa conhecido")
+            docs = c1.checkbox("Vi documentos (laudo, orçamento)")
+            atualiz = c1.checkbox("Há atualizações do uso do dinheiro")
+            conhece = c1.checkbox("Conheço ou alguém de confiança confirmou")
+            plataforma = c2.checkbox("Está numa plataforma de vaquinha")
+            imprensa = c2.checkbox("Saiu na imprensa conhecida")
         enviar = st.form_submit_button("🔎 Verificar agora", width="stretch")
     if enviar:
         with st.spinner("Consultando dados públicos e analisando…"):
